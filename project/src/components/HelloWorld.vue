@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
-    <button @click="login()"> login </button>
-    <button @click="logout()"> logout </button>
+    <button v-if="!isLoggedIn()" @click="login()"> login </button>
+    <button v-if="isLoggedIn()" @click="logout()"> logout </button>
     <p v-if="isLoggedIn()"> someone is logged in </p>
   </div>
 </template>

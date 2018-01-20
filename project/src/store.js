@@ -9,17 +9,20 @@ const store = new Vuex.Store({
     state: {
       auth: {
         accessToken: null,
-        idToken: null
+        idToken: null,
+        expiresAt: null
       }  
     },
     mutations: {
       setTokens (state, tokens) {
         state.auth.accessToken = tokens.accessToken
         state.auth.idToken = tokens.idToken
+        state.auth.expiresAt = tokens.expiresAt
       },
       clearTokens (state) {
         state.auth.accessToken = null
         state.auth.idToken = null
+        state.auth.expiresAt = null
       }
     }
 })

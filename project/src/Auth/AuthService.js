@@ -19,9 +19,13 @@ function authService () {
                 router.replace('/')
             }         
             else if (authResult && authResult.accessToken && authResult.idToken) {
+                let expireDate = JSON.stringify(
+                    authResult.expiresIn * 1000 + new Date().getTime()
+                  )
                 store.commit('setTokens', {
                     accessToken: authResult.accessToken, 
-                    idToken: authResult.idToken
+                    idToken: authResult.idToken,
+                    expiresAt: expireDate
                 })
                 router.replace('/')
             }            
@@ -33,7 +37,10 @@ function authService () {
     }
 
     function isLoggedIn () {
-        return (store.state.auth.accessToken && store.state.auth.idToken)
+        if (store.state.auth.accessToken && store.state.auth.idToken) {
+            let expiresAt = JSON.parse(store.state.auth.expiresAt)
+            return new Date().getTime() < expiresAt
+        }
     }
 
     return {
