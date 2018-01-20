@@ -1,20 +1,30 @@
 <template>
   <div class="hello">
     <button @click="login()"> login </button>
+    <button @click="logout()"> logout </button>
+    <p v-if="isLoggedIn()"> someone is logged in </p>
   </div>
 </template>
 
 <script>
+import Auth from '@/Auth/AuthService'
+
 export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+
     }
   },
   methods: {
     login () {
-      console.log(this.$store.state.count)
+      Auth.login()
+    },
+    logout () {
+      Auth.logout()
+    },
+    isLoggedIn () { 
+      return Auth.isLoggedIn() 
     }
   }
 }

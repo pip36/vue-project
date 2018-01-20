@@ -4,6 +4,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import App from './App'
 import router from './router'
+import Auth0 from 'auth0-js'
 
 
 import store from './store'
